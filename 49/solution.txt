@@ -1,0 +1,59 @@
+class Solution {
+public:
+    // bool valid(string s, string t) {
+    //     if (s.length() != t.length())
+    //         return false;
+
+    //     if (s == "#" || t == "#")
+    //         return false;
+
+    //     vector<int> count(26, 0);
+
+    //     for (int i = 0; i < s.length(); i++) {
+    //         count[s[i] - 'a']++;
+    //         count[t[i] - 'a']--;
+    //     }
+
+    //     for (auto x : count) {
+    //         if (x != 0)
+    //             return false;
+    //     }
+
+    //     return true;
+    // }
+
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+        // vector<vector<string>> ans;
+
+        // for (int i = 0; i < strs.size(); i++) {
+        //     if (strs[i] == "#")
+        //         continue;
+        //     vector<string> temp;
+        //     temp.push_back(strs[i]);
+        //     for (int j = i + 1; j < strs.size(); j++) {
+        //         if (valid(strs[i], strs[j])) {
+        //             temp.push_back(strs[j]);
+        //             strs[j] = "#";
+        //         }
+        //     }
+        //     ans.push_back(temp);
+        // }
+
+        // return ans;
+
+        unordered_map<string, vector<string>> mp;
+        vector<vector<string>> ans;
+
+        for (const auto& str : strs) {
+            string key = str;
+            sort(key.begin(), key.end());
+            mp[key].push_back(str);
+        }
+
+        for (auto [key, val] : mp) {
+            ans.push_back(val);
+        }
+
+        return ans;
+    }
+};
